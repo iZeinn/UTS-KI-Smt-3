@@ -3,7 +3,7 @@
 using namespace std;
 
 
-//Halo jon
+//Halo guyss
 struct node
 {
        int data;
