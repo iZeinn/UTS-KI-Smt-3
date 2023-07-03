@@ -2,8 +2,6 @@
 #include <conio.h>
 using namespace std;
 
-
-//Halo guyss
 struct node
 {
        int data;
@@ -64,36 +62,30 @@ void insert_sebelum(int data, int x)
 	masuk = new node;
 	masuk->data = data;
 	cari = head;
-	while (cari->next != head)
+	while ((cari->data != x)&&(cari->next != head))
 	{
-		cari = cari->next;
+		cari = cari->next;	
 	}
 	if (cari->data == x)
 	{
     	if (cari == head)
     	{
-    		masuk->next = head;
-    		masuk->prev = tail;
-    		head->prev   = masuk;
-    		head = masuk; 
-    		tail -> next = head;
-		}
-		else if (cari = tail)
-		{
-    		tail->prev->next = masuk;
-			masuk->prev = tail->prev;
-			tail->prev = masuk;
-			masuk->next = tail;
+			cari = cari->prev;
+			masuk->next = cari->next;
+			masuk->prev = cari;
+			cari->next->prev = masuk;
+			cari->next = masuk;
+			head = cari->next;
 		}
 		else
 		{
-			cari->prev->next = masuk;
-			masuk->prev = cari->prev;
-			cari->prev = masuk;
-			masuk->next = cari;
+			cari = cari->prev;
+			masuk->next = cari->next;
+			masuk->prev = cari;
+			cari->next->prev = masuk;
+			cari->next = masuk;
 		}
 	}
-	cout<<endl;
 }
 
 void insert_setelah(int data,int x)
@@ -292,6 +284,7 @@ int main()
 	
 	do
 	{
+		system ("cls");
 		cout<<"Hasil proses	: ";
 		tampil();
 		cout<<"1. Insert diawal node\n";
@@ -307,16 +300,14 @@ int main()
 		
 		pilihan(pilih, data);
 
-		cout<<"Hasil proses	: ";
+		cout<<"\nHasil proses	: ";
 		tampil();
 		
-		cout<<"Ingin mengulangi proses ?";
+		cout<<"\nIngin mengulangi proses ?";
 		cin>>ulang;
-		system ("cls");
-	} while (ulang != 't' || ulang != 'T');
+	} while (ulang == 'y' || ulang == 'Y');
 	
-   
-   tampil();
    system("pause");
+   return 0;
 }
 
